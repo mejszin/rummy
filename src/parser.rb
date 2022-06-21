@@ -42,13 +42,15 @@ def interpret
             $state.clear
         when 'jmp'
             $state.jump_stack << ip
-            ip = $state.label(pop())
+            label = pop()
+            ip = $state.label(label)
         when 'jmpif'
             $state.jump_stack << ip
             bool, label = pop(2)
             ip = $state.label(label) if bool
         when 'return'
             ip = $state.jump_stack.last
+            $state.jump_stack = $state.jump_stack[0..-2]
         when 'print'
             print "#{pop()}\n"
         when 'exit'
