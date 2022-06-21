@@ -1,0 +1,35 @@
+!AND_TRUTH_TABLE print!
+    false! false! !dup dup! rotate! !swap and!
+trace clear
+    false! true! !dup dup! rotate! !swap and!
+trace clear
+    true! true! !dup dup! rotate! !swap and!
+trace clear
+
+print
+
+!OR_TRUTH_TABLE print!
+    false! false! !dup dup! rotate! !swap or!
+trace clear
+    false! true! !dup dup! rotate! !swap or!
+trace clear
+    true! true! !dup dup! rotate! !swap or!
+trace clear
+
+print
+
+!XOR_TRUTH_TABLE print!
+    false! false! !dup dup! rotate! !swap xor!
+trace clear
+    false! true! !dup dup! rotate! !swap xor!
+trace clear
+    true! true! !dup dup! rotate! !swap xor!
+trace clear
+
+print
+
+!NOT_TRUTH_TABLE print!
+    false! dup! not!
+trace clear
+    true! dup! not!
+trace clear

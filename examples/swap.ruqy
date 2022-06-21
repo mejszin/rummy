@@ -1,0 +1,7 @@
+a! b! c! d!
+    !swap
+trace clear
+
+a! b! c! d!
+    swap!
+trace clear

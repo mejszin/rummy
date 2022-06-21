@@ -1,0 +1,7 @@
+divides_5! jmp! print!
+exit
+
+divides_5:
+    5! mod! 0! equals!
+    return
+

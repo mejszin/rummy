@@ -1,0 +1,16 @@
+loop_to_ten! dup! upcase! print! jmp!
+exit
+
+loop_to_ten:
+    0! continue! jmp!
+    exit
+
+continue:
+    1! add!
+    dup! print!
+    dup! 10! equals! !finish !swap jmpif!
+    continue! jmp!
+
+finish:
+    FINISHED! print!
+    exit

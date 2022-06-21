@@ -1,0 +1,9 @@
+a! b! c! d!
+    !rotate
+    trace
+clear
+
+a! b! c! d!
+    rotate!
+    trace
+clear

@@ -1,0 +1,10 @@
+say_hello! true! jmpif!
+exit
+
+say_bye:
+    "BYE"! print!
+    exit
+
+say_hello:
+    "HELLO"! print!
+    say_bye! jmp!
