@@ -57,7 +57,7 @@ def interpret
             ip = $state.jump_stack.last
             $state.jump_stack = $state.jump_stack[0..-2]
         when 'print'
-            print "#{pop()}\n"
+            print "#{pop().unescape}\n"
         when 'exit'
             return
         else
@@ -67,3 +67,4 @@ def interpret
         ip += 1
     end
 end
+

@@ -22,6 +22,10 @@ class String
         return self
     end
 
+    def unescape
+        "\"#{self}\"".undump
+    end
+
     def colorize(color)
         code = case color
         when :black   ; 30

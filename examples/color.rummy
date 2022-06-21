@@ -1,0 +1,11 @@
+!Cyan !36 colorize! jmp! print!
+!Magenta !35 colorize! jmp! print!
+!Yellow !33 colorize! jmp! print!
+exit
+
+colorize:
+    !\e[ !concat
+    !m !swap !concat !concat
+    \e[0m! concat!
+    return
+
