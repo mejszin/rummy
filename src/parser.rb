@@ -11,6 +11,10 @@ def interpret
             push(pop(2).reverse.reduce(:%))
         when 'equals'
             push(pop(2).reduce(:==))
+        when 'gt'
+            push(pop(2).reduce(:>))
+        when 'lt'
+            push(pop(2).reduce(:<))
         when 'and'
             push(pop(2).reduce(:&))
         when 'or'
