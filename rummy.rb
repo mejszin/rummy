@@ -11,6 +11,6 @@ $state = State.new.tap do |s|
     s.program, s.labels = *lex(File.readlines(s.path))
 end
 
-deq(ARGV[1..-1]).each { |term| push(term, false) }
+initial_deque(ARGV[1..-1]).each { |term| push(term, false) }
 
 interpret()

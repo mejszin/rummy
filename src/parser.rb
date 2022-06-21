@@ -15,6 +15,10 @@ def interpret
             push(pop(2).reduce(:>))
         when 'lt'
             push(pop(2).reduce(:<))
+        when 'ceil'
+            push(pop().ceil)
+        when 'floor'
+            push(pop().floor)
         when 'and'
             push(pop(2).reduce(:&))
         when 'or'
@@ -28,8 +32,7 @@ def interpret
         when 'drop'
             pop()
         when 'swap'
-            a, b = pop(2)
-            push(a); push(b)
+            push($state.right? ? pop(2) : pop(2).reverse)
         when 'rotate'
             push(pop(), $state.right?)
         when 'upcase'
