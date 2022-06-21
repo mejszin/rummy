@@ -53,11 +53,21 @@ def interpret
             $state.jump_stack << ip
             bool, label = pop(2)
             ip = $state.label(label) if bool
+        when 'input'
+            a = STDIN.gets.chomp
+            push(a)
+        when 'alias'
+            key, val = pop(2)
+            # Key value is overwritten incase previously defined
+            key = $state.program[ip - 2].word?
+            $state.aliases[key] = val
         when 'return'
             ip = $state.jump_stack.last
             $state.jump_stack = $state.jump_stack[0..-2]
         when 'print'
-            print "#{pop().unescape}\n"
+            print "#{pop().to_s.unescape}\n"
+        when 'include'
+            $state.include_program(pop(), ip)
         when 'exit'
             return
         else

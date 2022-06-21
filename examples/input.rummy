@@ -1,0 +1,7 @@
+!A= !print !input
+
+!B= !print !input
+
+!A+B= !print
+
+!add !print

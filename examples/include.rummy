@@ -1,0 +1,5 @@
+!Welcome !print
+# test
+!./examples/hello_world.rummy !include
+
+!And_Goodbye !print

@@ -12,6 +12,7 @@ $state = State.new.tap do |s|
     s.path = ARGV[0]
     s.trace_mode = ARGV.include?('--trace')
     s.deque = []
+    s.aliases = {}
     s.jump_stack = []
     s.program, s.labels = *lex(File.readlines(s.path))
 end

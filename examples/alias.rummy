@@ -1,0 +1,8 @@
+!a !14 alias!
+!b !32 alias!
+
+a! b! add! print!
+
+!a !2 alias!
+
+a! b! add! print!
