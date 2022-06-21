@@ -39,6 +39,8 @@ def interpret
             push(pop().upcase)
         when 'downcase'
             push(pop().downcase)
+        when 'concat'
+            push($state.right? ? pop(2).reverse.join : pop(2).join)
         when 'trace'
             trace()
         when 'clear'

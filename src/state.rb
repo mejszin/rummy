@@ -12,7 +12,12 @@ State = Struct.new(:path, :program, :deque, :labels, :trace_mode, :jump_stack, :
     end
 
     def label(word)
-        return self.labels[word]
+        if self.labels.key?(word)
+            return self.labels[word]
+        else
+            puts "rummy_error: Unaddressable label '#{word}'".colorize(:red)
+            exit
+        end
     end
 end
 

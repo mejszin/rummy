@@ -21,4 +21,20 @@ class String
         return self[0..-2] if self.right?
         return self
     end
+
+    def colorize(color)
+        code = case color
+        when :black   ; 30
+        when :red     ; 31
+        when :green   ; 32
+        when :yellow  ; 33
+        when :blue    ; 34
+        when :magenta ; 35
+        when :cyan    ; 36
+        when :white   ; 37
+        else          ; 37
+        end
+        "\e[#{code}m#{self}\e[0m"
+    end
 end
+

@@ -3,6 +3,11 @@ require_relative './src/lexer.rb'
 require_relative './src/parser.rb'
 require_relative './src/state.rb'
 
+if ((ARGV.length == 0) || (!File.exist?(ARGV[0])))
+    puts "rummy_error: No valid file path given".colorize(:red)
+    exit
+end
+
 $state = State.new.tap do |s|
     s.path = ARGV[0]
     s.trace_mode = ARGV.include?('--trace')
