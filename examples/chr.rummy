@@ -1,0 +1,10 @@
+82! 85! 77! 77! 89!
+
+while_number:
+    !dup !number? !not !finish !jmpif
+    !chr !rotate
+    !while_number !jmp
+
+finish:
+    concat! concat! concat! concat!
+    print!

@@ -42,8 +42,14 @@ class Rummy
                 push(pop().downcase)
             when 'concat'
                 push(self.right? ? pop(2).reverse.join : pop(2).join)
-            when 'trace'
+            when 'chr'
+                push(pop().chr)
+            when 'ord'
+                push(pop().ord)
+            when 'trace', 'inspect'
                 trace()
+            when 'length'
+                push(@deque.length)
             when 'clear'
                 clear()
             when 'jmp'
@@ -51,8 +57,10 @@ class Rummy
                 ip = label(pop())
             when 'jmpif'
                 @jump_stack << ip
-                bool, label = pop(2)
+                label, bool = pop(2)
                 ip = label(label) if bool
+            when 'number?'
+                push(pop().is_number?)
             when 'input'
                 a = STDIN.gets.chomp
                 push(a)

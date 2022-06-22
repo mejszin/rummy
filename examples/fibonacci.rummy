@@ -4,4 +4,4 @@ fibonnaci:
     dup! print!
     !dup add! swap!
     # Continue until the number exceeds 50
-    dup! 100! gt! fibonnaci! swap! jmpif!
+    dup! 100! gt! fibonnaci! jmpif!

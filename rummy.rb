@@ -10,7 +10,6 @@ end
 
 begin_time = Time.now
 
-
 rummy = Rummy.new(ARGV[0], :initial_deque => argv_deque(ARGV[1..-1]))
 rummy.trace_mode = ARGV.include?('--trace')
 result = rummy.interpret
