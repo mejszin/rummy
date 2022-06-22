@@ -14,7 +14,7 @@ def lex(lines)
     return words.flatten, labels
 end
 
-def initial_deque(argv)
+def argv_deque(argv)
     arr = []
     for term in argv do
         unless term[0, 2] == '--'
