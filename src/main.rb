@@ -35,7 +35,7 @@ class Rummy
         end
         return words.length == 1 ? words.first : words.flatten
     end
-    
+
     def push(word, left = self.left?)
         word = self.alias(word)
         word = true if word == 'true'
@@ -43,7 +43,7 @@ class Rummy
         word = word.to_i if (word.is_a?(String) && word.float?)
         @deque = (left ? [word] + @deque : @deque + [word]).flatten
     end
-    
+
     def trace(instruction = @previous)
         puts "#{instruction}\t=> #{@deque.inspect}"
     end
