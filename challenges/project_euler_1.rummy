@@ -1,6 +1,7 @@
 Multiples_of_3_or_5 print
 
-!0 999! until_zero! jmp!
+0 999 
+until_zero jmp
 exit
 
 until_zero:
