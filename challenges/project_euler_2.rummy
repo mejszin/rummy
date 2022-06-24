@@ -1,0 +1,22 @@
+Even_Fibonacci_Numbers print
+
+0 2 1
+
+fibonnaci:
+    is_even jmp sum_even jmpif
+    !swap !dup rotate !add rotate
+    # Continue until the number exceeds 4000000
+    dup 4000000 gt fibonnaci jmpif
+    finish jmp
+
+is_even:
+    dup 2 mod 0 equals
+    return
+
+sum_even:
+    dup rotate !add
+    return
+
+finish:
+    !print
+    exit

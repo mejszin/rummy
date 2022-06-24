@@ -1,10 +1,15 @@
-!Cyan !36 colorize! jmp! print!
-!Magenta !35 colorize! jmp! print!
-!Yellow !33 colorize! jmp! print!
-exit
+common/colorize include
 
-colorize:
-    !\e[ !concat
-    !m !swap !concat !concat
-    \e[0m! concat!
-    return
+!Black   !CLR_BLACK   colorize! jmp! print!
+!Red     !CLR_RED     colorize! jmp! print!
+!Green   !CLR_GREEN   colorize! jmp! print!
+!Yellow  !CLR_YELLOW  colorize! jmp! print!
+!Blue    !CLR_BLUE    colorize! jmp! print!
+!Magenta !CLR_MAGENTA colorize! jmp! print!
+!Cyan    !CLR_CYAN    colorize! jmp! print!
+!White   !CLR_WHITE   colorize! jmp! print!
+!Black   !CLR_BLACK   colorize! jmp! print!
+
+!Cyan    !CLR_CYAN    !CLR_BOLD !CLR_ITALIC !CLR_UNDERLINE !add !add !add colorize! jmp! print!
+!Magenta !CLR_MAGENTA !CLR_BOLD !CLR_ITALIC !CLR_UNDERLINE !add !add !add colorize! jmp! print!
+!Yellow  !CLR_YELLOW  !CLR_BOLD !CLR_ITALIC !CLR_UNDERLINE !add !add !add colorize! jmp! print!

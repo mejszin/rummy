@@ -1,0 +1,28 @@
+Multiples_of_3_or_5 print
+
+!0 999! until_zero! jmp!
+exit
+
+until_zero:
+    divides_3 jmp increment jmpif
+    divides_5 jmp increment jmpif
+    continue:
+        1 subtract
+        dup 0 equals finish jmpif
+        until_zero jmp
+
+finish:
+    !print
+    exit
+
+increment:
+    dup !add
+    continue jmp
+
+divides_3:
+    dup 3 mod 0 equals
+    return
+
+divides_5:
+    dup 5 mod 0 equals
+    return

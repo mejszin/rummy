@@ -29,23 +29,32 @@ class Rummy
 
     def pop(n = 1)
         words = []
+        return if ((@deque == nil) || @deque.empty?)
         (0...n).each do
             words << (self.left? ? @deque[0] : @deque[-1])
             @deque = self.left? ? @deque[1..-1] : @deque[0..-2]
         end
         return words.length == 1 ? words.first : words.flatten
     end
-
+    
     def push(word, left = self.left?)
         word = self.alias(word)
         word = true if word == 'true'
         word = false if word == 'false'
         word = word.to_i if (word.is_a?(String) && word.float?)
-        @deque = (left ? [word] + @deque : @deque + [word]).flatten
+        if @deque == nil
+            @deque = []
+        else
+            @deque = (left ? [word] + @deque : @deque + [word]).flatten
+        end
     end
 
-    def trace(instruction = @previous)
-        puts "#{instruction}\t=> #{@deque.inspect}"
+    def trace(ip = nil, instruction = @previous)
+        if ip == nil
+            puts "#{instruction}\t=> #{@deque.inspect} #{jump_stack.inspect}"
+        else
+            puts "#{ip}: #{instruction}\t=> #{@deque.inspect} #{jump_stack.inspect}"
+        end
     end
 
     def clear
@@ -65,6 +74,10 @@ class Rummy
         end
     end
 
+    def print_program
+        @program.each_with_index { |word, index| puts "#{index}: #{word}"}
+    end
+
     def run_program(path, verbose, param_count)
         arr = []
         (0...param_count).each { arr << pop() }
@@ -72,14 +85,20 @@ class Rummy
         return rummy.interpret
     end
 
-    def include_program(path, index)
-        if File.file?(path)
-            lines = File.readlines(lines)
-            program, labels = *lex(file)
-            @program.insert(index + 1, program).flatten!
-            @labels.merge!(labels)
-        else
-            puts "rummy_error: Invalid file path '#{path}'".colorize(:red)
+    def include_program(path, ip)
+        unless File.file?(path)
+            path = "./modules/#{path}.rummy"
+            unless File.file?(path)
+                puts "rummy_error: Invalid file path '#{path}'".colorize(:red)
+                return
+            end
         end
+        lines = File.readlines(path)
+        program, labels = *lex(lines)
+        @program.insert(ip + 1, program).flatten!
+        for name, index in labels do
+            @labels[name] = index + ip
+        end
+        @jump_stack << ip + program.length - 1
     end
 end

@@ -1,0 +1,29 @@
+!CLR_BLACK   !\e[30m alias!
+!CLR_RED     !\e[31m alias!
+!CLR_GREEN   !\e[32m alias!
+!CLR_YELLOW  !\e[33m alias!
+!CLR_BLUE    !\e[34m alias!
+!CLR_MAGENTA !\e[35m alias!
+!CLR_CYAN    !\e[36m alias!
+!CLR_WHITE   !\e[37m alias!
+
+!CLR_NORMAL    !\e[0m alias!
+!CLR_BOLD      !\e[1m alias!
+!CLR_FADED     !\e[2m alias!
+!CLR_ITALIC    !\e[3m alias!
+!CLR_UNDERLINE !\e[4m alias!
+!CLR_BLINKING  !\e[5m alias!
+!CLR_INVERTED  !\e[7m alias!
+
+colorize:
+    # Skip unless parameters are given
+    1 length equals skip_colorize jmpif
+    concat!
+    CLR_NORMAL! concat!
+    return
+    skip_colorize: 
+        return
+    concat_colorize:
+        !concat
+        trace
+        return

@@ -33,7 +33,10 @@ class Rummy
             when 'drop'
                 pop()
             when 'swap'
-                push(self.right? ? pop(2) : pop(2).reverse)
+                a, b = pop(2)
+                unless ((a == nil) || (b == nil))
+                    push(self.right? ? [a, b] : [b, a])
+                end
             when 'rotate'
                 push(pop(), self.right?)
             when 'upcase'
@@ -41,24 +44,31 @@ class Rummy
             when 'downcase'
                 push(pop().downcase)
             when 'concat'
-                push(self.right? ? pop(2).reverse.join : pop(2).join)
+                a, b = pop(2)
+                unless ((a == nil) || (b == nil))
+                    push(self.right? ? [a, b].reverse.join : [a, b].join)
+                end
             when 'chr'
                 push(pop().chr)
             when 'ord'
                 push(pop().ord)
             when 'trace', 'inspect'
-                trace()
+                trace(ip)
             when 'length'
                 push(@deque.length)
             when 'clear'
                 clear()
             when 'jmp'
                 @jump_stack << ip
-                ip = label(pop())
+                new_ip = label(pop())
+                ip = new_ip unless new_ip == nil
             when 'jmpif'
-                @jump_stack << ip
                 label, bool = pop(2)
-                ip = label(label) if bool
+                if bool
+                    @jump_stack << ip
+                    new_ip = label(label)
+                    ip = new_ip unless new_ip == nil
+                end
             when 'number?'
                 push(pop().is_number?)
             when 'input'
@@ -70,8 +80,18 @@ class Rummy
                 key = @program[ip - 2].word?
                 @aliases[key] = val
             when 'return'
-                ip = @jump_stack.last
+                new_ip = @jump_stack.last
+                unless new_ip == nil
+                    ip = new_ip
+                end
                 @jump_stack = @jump_stack[0..-2]
+            when 'returnif'
+                bool = pop()
+                if bool
+                    new_ip = @jump_stack.last
+                    ip = new_ip unless new_ip == nil
+                    @jump_stack = @jump_stack[0..-2]
+                end
             when 'print'
                 val = pop()
                 print "#{val.to_s.unescape}\n" if @verbose_mode
@@ -83,7 +103,8 @@ class Rummy
             when 'exit'
                 return
             else
-                push(@current.word?) unless @current.label?
+                word = @current.word?
+                push(word) unless @current.label?
             end
             trace(@current) if @trace_mode
             ip += 1

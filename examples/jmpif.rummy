@@ -1,0 +1,11 @@
+!true !left_test trace !jmpif
+true! right_test! trace jmpif!
+exit
+
+left_test:
+    Left_Test_Success print
+    return
+
+right_test:
+    Right_Test_Success print
+    return
