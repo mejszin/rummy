@@ -4,11 +4,15 @@ class Rummy
         until ip >= @program.length
             @current, @previous = @program[ip], @current
             case @current.word?
-            when 'add'
+            when 'add', '+'
                 push(pop(2).reduce(:+))
-            when 'subtract'
+            when 'subtract', '-'
                 push(pop(2).reverse.reduce(:-))
-            when 'mod'
+            when 'multiply', '*'
+                push(pop(2).reverse.reduce(:*))
+            when 'divide', '/'
+                push(pop(2).reverse.reduce(:/))
+            when 'mod', '%'
                 push(pop(2).reverse.reduce(:%))
             when 'equals'
                 push(pop(2).reduce(:==))
@@ -82,7 +86,7 @@ class Rummy
             when 'alias'
                 key, val = pop(2)
                 # Key value is overwritten incase previously defined
-                key = @program[ip - 2].word?
+                # key = @program[ip - 2].word?
                 @aliases[key] = val
             when 'return'
                 new_ip = @jump_stack.last

@@ -1,0 +1,10 @@
+common/math include
+common/circle include
+
+5 # radius
+circle_perimeter jmp
+print
+
+5 # radius
+circle_area jmp
+print

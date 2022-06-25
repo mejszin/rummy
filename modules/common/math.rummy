@@ -1,19 +1,21 @@
+3.14159265359 pi alias
+
 return
 
 inc:
-    1 add
+    1 +
     return
 
 dec:
-    1 subtract
+    1 -
     return
 
 floor:
-    dup 1 mod subtract
+    dup 1 % -
     return
 
 ceil:
-    dup 1 mod 1 swap subtract add
+    dup 1 % 1 swap - +
     return
 
 sum:

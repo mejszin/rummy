@@ -1,0 +1,9 @@
+return
+
+circle_perimeter:
+    2 pi * *
+    return
+
+circle_area:
+    dup pi * *
+    return
