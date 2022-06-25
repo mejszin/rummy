@@ -1,10 +1,17 @@
 common/math include
 common/circle include
+common/colorize include
 
 5 # radius
-circle_perimeter jmp
-print
 
-5 # radius
-circle_area jmp
-print
+radius= print 
+dup CLR_UNDERLINE swap colorize jmp print
+
+
+perimeter= print
+dup circle_perimeter jmp
+CLR_UNDERLINE swap colorize jmp print
+
+area= print
+dup circle_area jmp
+CLR_UNDERLINE swap colorize jmp print
