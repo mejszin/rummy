@@ -1,0 +1,29 @@
+return
+
+inc:
+    1 add
+    return
+
+dec:
+    1 subtract
+    return
+
+floor:
+    dup 1 mod subtract
+    return
+
+ceil:
+    dup 1 mod 1 swap subtract add
+    return
+
+sum:
+    rotate
+    sum_until_zero:
+        !1 !subtract
+        !dup !0 !equals
+        !sum_finish !gotoif
+        add
+        sum_until_zero goto
+    sum_finish:
+        !drop
+        return

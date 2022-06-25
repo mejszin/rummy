@@ -16,10 +16,6 @@ class Rummy
                 push(pop(2).reduce(:>))
             when 'lt'
                 push(pop(2).reduce(:<))
-            when 'ceil'
-                push(pop().ceil)
-            when 'floor'
-                push(pop().floor)
             when 'and'
                 push(pop(2).reduce(:&))
             when 'or'
@@ -58,6 +54,15 @@ class Rummy
                 push(@deque.length)
             when 'clear'
                 clear()
+            when 'goto'
+                new_ip = label(pop())
+                ip = new_ip unless new_ip == nil
+            when 'gotoif'
+                label, bool = pop(2)
+                if bool
+                    new_ip = label(label)
+                    ip = new_ip unless new_ip == nil
+                end
             when 'jmp'
                 @jump_stack << ip
                 new_ip = label(pop())
@@ -94,6 +99,7 @@ class Rummy
                 end
             when 'print'
                 val = pop()
+                val = val.to_f.prettify if val.is_number?
                 print "#{val.to_s.unescape}\n" if @verbose_mode
             when 'include'
                 include_program(pop(), ip)

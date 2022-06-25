@@ -1,0 +1,4 @@
+common/math include
+
+12 inc jmp print
+12 dec jmp print

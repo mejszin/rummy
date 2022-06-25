@@ -41,7 +41,7 @@ class Rummy
         word = self.alias(word)
         word = true if word == 'true'
         word = false if word == 'false'
-        word = word.to_i if (word.is_a?(String) && word.float?)
+        word = word.to_f if (word.is_a?(String) && word.float?)
         if @deque == nil
             @deque = []
         else
@@ -75,7 +75,7 @@ class Rummy
     end
 
     def print_program
-        @program.each_with_index { |word, index| puts "#{index}: #{word}"}
+        @program.each_with_index { |word, index| puts "#{index}: #{word}" }
     end
 
     def run_program(path, verbose, param_count)

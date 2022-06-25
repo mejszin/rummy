@@ -8,7 +8,10 @@ def lex(lines)
     # Flatten all words into an array
     for line in lines do
         line_words = line.chomp.split(' ')
-        words += line_words unless line_words.first == COMMENT_INDICATOR
+        for word in line_words do
+            break if word[0] == COMMENT_INDICATOR
+            words << word 
+        end
     end
     words.flatten.each_with_index { |w, i| labels[w.word?] = i if w.label? }
     return words.flatten, labels

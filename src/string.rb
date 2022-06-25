@@ -56,3 +56,15 @@ class Object
         to_f.to_s == to_s || to_i.to_s == to_s
     end
 end
+
+class Float
+    def prettify
+        return (to_i == self) ? to_i : self
+    end
+end
+
+class Integer
+    def prettify
+        return self
+    end
+end
