@@ -1,6 +1,11 @@
 common/math include
 
 12 4 -2  # Values
-3        # Value count
-sum
+3 sum    # Value count
 print    # => 14
+
+clear
+
+17 8 -5 2 9
+length sum
+print
