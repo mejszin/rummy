@@ -35,21 +35,15 @@ class Rummy
             when 'drop'
                 pop()
             when 'swap'
-                a, b = pop(2)
-                unless ((a == nil) || (b == nil))
-                    push(self.right? ? [a, b] : [b, a])
-                end
+                pop(2).each { |v| push(v) }
             when 'rotate'
                 push(pop(), self.right?)
             when 'chars'
                 pop().chars.each { |c| push(c) }
             when 'concat'
-                a, b = pop(2)
-                unless ((a == nil) || (b == nil))
-                    push(self.right? ? [a, b].reverse.join : [a, b].join)
-                end
+                push(pop(2).reduce(:+))
             when 'chr'
-                push(pop().chr)
+                push(pop().to_i.chr)
             when 'ord'
                 push(pop().ord)
             when 'trace', 'inspect'
@@ -99,6 +93,7 @@ class Rummy
                     ip = new_ip unless new_ip == nil
                     @jump_stack = @jump_stack[0..-2]
                 end
+            # TODO: repeat ... <bool> until
             when 'print'
                 val = pop()
                 val = val.to_f.prettify if val.is_number?
@@ -124,14 +119,24 @@ class Rummy
             when 'if'
                 bool = pop()
                 unless bool
-                    ip += 1 until (['end', 'else'].include?(@program[ip]))
-                    # @jump_stack = @jump_stack[0..-2] if @program[ip] == 'end'
+                    layer = 1
+                    until (((@program[ip] == 'else') && (layer == 1)) || 
+                           ((@program[ip] == 'end' ) && (layer == 0)))
+                        ip += 1
+                        layer -= 1 if ['end'].include?@program[ip].word?
+                        layer += 1 if ['if', 'unless'].include?(@program[ip].word?)
+                    end
                 end
             when 'unless'
                 bool = pop()
                 if bool
-                    ip += 1 until (['end', 'else'].include?(@program[ip]))
-                    # @jump_stack = @jump_stack[0..-2] if @program[ip] == 'end'
+                    layer = 1
+                    until (((@program[ip] == 'else') && (layer == 1)) || 
+                           ((@program[ip] == 'end' ) && (layer == 0)))
+                        ip += 1
+                        layer -= 1 if ['end'].include?@program[ip].word?
+                        layer += 1 if ['if', 'unless'].include?(@program[ip].word?)
+                    end
                 end
             when 'else'
                 ip += 1 until @program[ip] == 'end'
@@ -139,7 +144,7 @@ class Rummy
                 return
             else
                 if @labels.key?(@current.word?)
-                    @contextual_left = true if ((@current.left?) || (@contextual_left && @current.right?))
+                    @contextual_left = @contextual_left ? !@current.left? : @current.left?
                     @jump_stack << ip
                     new_ip = label(@current.word?)
                     ip = new_ip unless new_ip == nil

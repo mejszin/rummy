@@ -5,3 +5,15 @@ trace clear
 a! b! c! d!
     !concat
 trace clear
+
+a! b! concat! print # => 'ba'
+!a !b !concat print # => 'ba'
+
+clear
+
+test proc
+    1 2 subtract
+end
+
+!test print
+test! print

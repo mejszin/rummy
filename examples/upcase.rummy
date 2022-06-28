@@ -1,0 +1,7 @@
+common/deque include
+common/string include
+
+a b c d
+Alakazam! upcase!
+!Alakazam !upcase
+trace
