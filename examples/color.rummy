@@ -1,15 +1,15 @@
-common/colorize include
+common/color include
 
-!Black   !CLR_BLACK   colorize! jmp! print!
-!Red     !CLR_RED     colorize! jmp! print!
-!Green   !CLR_GREEN   colorize! jmp! print!
-!Yellow  !CLR_YELLOW  colorize! jmp! print!
-!Blue    !CLR_BLUE    colorize! jmp! print!
-!Magenta !CLR_MAGENTA colorize! jmp! print!
-!Cyan    !CLR_CYAN    colorize! jmp! print!
-!White   !CLR_WHITE   colorize! jmp! print!
-!Black   !CLR_BLACK   colorize! jmp! print!
+!Black   !CLR_BLACK   colorize print!
+!Red     !CLR_RED     colorize print!
+!Green   !CLR_GREEN   colorize print!
+!Yellow  !CLR_YELLOW  colorize print!
+!Blue    !CLR_BLUE    colorize print!
+!Magenta !CLR_MAGENTA colorize print!
+!Cyan    !CLR_CYAN    colorize print!
+!White   !CLR_WHITE   colorize print!
+!Black   !CLR_BLACK   colorize print!
 
-!Cyan    !CLR_CYAN    !CLR_BOLD !CLR_ITALIC !CLR_UNDERLINE !add !add !add colorize! jmp! print!
-!Magenta !CLR_MAGENTA !CLR_BOLD !CLR_ITALIC !CLR_UNDERLINE !add !add !add colorize! jmp! print!
-!Yellow  !CLR_YELLOW  !CLR_BOLD !CLR_ITALIC !CLR_UNDERLINE !add !add !add colorize! jmp! print!
+!Cyan    !CLR_CYAN    !CLR_BOLD !CLR_ITALIC !CLR_UNDERLINE !add !add !add colorize print!
+!Magenta !CLR_MAGENTA !CLR_BOLD !CLR_ITALIC !CLR_UNDERLINE !add !add !add colorize print!
+!Yellow  !CLR_YELLOW  !CLR_BOLD !CLR_ITALIC !CLR_UNDERLINE !add !add !add colorize print!

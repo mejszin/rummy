@@ -9,6 +9,7 @@ class Rummy
         @program, @deque, @labels, @aliases, @jump_stack = [], [], {}, {}, []
         @trace_mode, @verbose_mode = false, verbose_mode
         @current, @previous = nil, nil
+        @contextual_left = false
         # Set values
         initial_deque.each { |term| push(term, false) }
         load(@path)
@@ -20,11 +21,19 @@ class Rummy
     end
 
     def left?
-        return @current.left?
+        unless @contextual_left
+            return @current.left?
+        else
+            return !@current.left?
+        end
     end
 
     def right?
-        return @current.right?
+        unless @contextual_left
+            return @current.right?
+        else
+            return !@current.right?
+        end
     end
 
     def pop(n = 1)

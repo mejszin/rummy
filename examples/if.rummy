@@ -1,0 +1,20 @@
+if_test proc
+    true if
+        abc print
+    else
+        cba print
+    end
+
+    false if
+        def print
+    else
+        true if
+            123 print
+        else
+            456 print
+        end
+    end
+end
+
+if_test
+exit

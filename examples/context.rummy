@@ -1,0 +1,12 @@
+push_abc proc
+    abc!
+endproc
+
+push_def proc
+    !def
+endproc
+
+clear _ push_abc! trace # => ["_", "abc"]
+clear _ !push_abc trace # => ["abc", "_"]
+clear _ push_def! trace # => ["def", "_"]
+clear _ !push_def trace # => ["_", "def"]

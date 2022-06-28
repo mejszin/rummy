@@ -1,31 +1,27 @@
 3.14159265359 pi alias
 
-return
-
-inc:
+inc proc
     1 +
-    return
+end
 
-dec:
+dec proc
     1 -
-    return
+end
 
-floor:
+floor proc
     dup 1 % -
-    return
+end
 
-ceil:
+ceil proc
     dup 1 % 1 swap - +
-    return
+end
 
-sum:
-    rotate
-    sum_until_zero:
-        !1 !subtract
-        !dup !0 !equals
-        !sum_finish !gotoif
-        add
-        sum_until_zero goto
-    sum_finish:
-        !drop
-        return
+sum proc
+    dup 1 equals unless
+        rotate! !1 !subtract
+        add !rotate
+        sum
+    else
+        drop!
+    end
+end

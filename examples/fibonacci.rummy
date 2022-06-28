@@ -1,7 +1,8 @@
-!0 !1
+fibonnaci proc
+    dup! print!             # Print right-most value
+    !dup add! swap!         # Dup left-value before adding
+    dup! 100! lt! returnif  # Return if 100 is less than right-most
+    fibonnaci               # Fibonacci!
+end
 
-fibonnaci:
-    dup! print!
-    !dup add! swap!
-    # Continue until the number exceeds 50
-    dup! 100! gt! fibonnaci! jmpif!
+!0 !1 fibonnaci

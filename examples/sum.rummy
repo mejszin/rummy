@@ -2,5 +2,5 @@ common/math include
 
 12 4 -2  # Values
 3        # Value count
-sum jmp
+sum
 print    # => 14

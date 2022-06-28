@@ -1,0 +1,11 @@
+test_one proc
+    dup! -1! add! print!
+endproc
+
+1 2 3
+
+trace
+
+test_one!
+
+!test_one

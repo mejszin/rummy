@@ -1,3 +1,5 @@
+BLOCK_WORDS = ['proc', 'if']
+
 class Rummy
     def interpret
         ip = 0
@@ -90,9 +92,7 @@ class Rummy
                 @aliases[key] = val
             when 'return'
                 new_ip = @jump_stack.last
-                unless new_ip == nil
-                    ip = new_ip
-                end
+                ip = new_ip unless new_ip == nil
                 @jump_stack = @jump_stack[0..-2]
             when 'returnif'
                 bool = pop()
@@ -110,11 +110,47 @@ class Rummy
             when 'run'
                 param_count, verbose, path = pop(3)
                 run_program(path, verbose, param_count).each { |val| push(val) }
+            when 'proc'
+                @labels[pop()] = ip
+                layer = 1
+                until ((@program[ip] == 'end') && (layer == 0))
+                    ip += 1
+                    layer -= 1 if (@program[ip].word? == 'end')
+                    layer += 1 if BLOCK_WORDS.include?(@program[ip].word?)
+                end
+            when 'end'
+                @contextual_left = false
+                new_ip = @jump_stack.last
+                ip = new_ip unless new_ip == nil
+                @jump_stack = @jump_stack[0..-2]
+            when 'if'
+                bool = pop()
+                unless bool
+                    ip += 1 until (['end', 'else'].include?(@program[ip]))
+                    # @jump_stack = @jump_stack[0..-2] if @program[ip] == 'end'
+                end
+            when 'unless'
+                bool = pop()
+                if bool
+                    ip += 1 until (['end', 'else'].include?(@program[ip]))
+                    # @jump_stack = @jump_stack[0..-2] if @program[ip] == 'end'
+                end
+            when 'else'
+                ip += 1 until @program[ip] == 'end'
             when 'exit'
                 return
             else
-                word = @current.word?
-                push(word) unless @current.label?
+                if @labels.key?(@current.word?)
+                    @contextual_left = @current.left?
+                    @jump_stack << ip
+                    new_ip = label(@current.word?)
+                    ip = new_ip unless new_ip == nil
+                else
+                    unless @current.label?
+                        word = @current.word?
+                        push(word)
+                    end
+                end
             end
             trace(@current) if @trace_mode
             ip += 1
