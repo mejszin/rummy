@@ -78,7 +78,7 @@ task :vim_syntax do
         "\" Comment (lucius=#606060)",
         "syntax match Comment \"\\v#{KEYWORDS[:comment][:regex]}\"",
         "\" Numbers (lucius=#8cd0d3)",
-        "syntax match Number \"\\v#{KEYWORDS[:number][:regex]}\"",
+        "syntax match Number \"\\v#{KEYWORDS[:numbers][:regex]}\"",
         "let b:current_syntax = \"rummy\"",
     ]
 end
