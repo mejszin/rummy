@@ -1,0 +1,7 @@
+common/deque include
+common/string include
+
+apple
+orange
+banana length trace # => Print length of 'banana'
+watermelon length trace

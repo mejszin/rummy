@@ -1,0 +1,10 @@
+# Drops N items from opposite direction
+
+drops proc
+    dup! 0! equals! unless
+        1! subtract!
+        !drop drops!
+    else
+        drop!
+    end
+end

@@ -16,6 +16,6 @@
 !CLR_INVERTED  !\e[7m alias!
 
 colorize proc
-    1 length equals returnif
+    1 size equals returnif
     concat! CLR_NORMAL! concat!
 end

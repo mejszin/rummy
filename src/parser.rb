@@ -41,10 +41,8 @@ class Rummy
                 end
             when 'rotate'
                 push(pop(), self.right?)
-            when 'upcase'
-                push(pop().upcase)
-            when 'downcase'
-                push(pop().downcase)
+            when 'chars'
+                pop().chars.each { |c| push(c) }
             when 'concat'
                 a, b = pop(2)
                 unless ((a == nil) || (b == nil))
@@ -56,7 +54,7 @@ class Rummy
                 push(pop().ord)
             when 'trace', 'inspect'
                 trace(ip)
-            when 'length'
+            when 'size'
                 push(@deque.length)
             when 'clear'
                 clear()
@@ -141,7 +139,7 @@ class Rummy
                 return
             else
                 if @labels.key?(@current.word?)
-                    @contextual_left = @current.left?
+                    @contextual_left = true if ((@current.left?) || (@contextual_left && @current.right?))
                     @jump_stack << ip
                     new_ip = label(@current.word?)
                     ip = new_ip unless new_ip == nil

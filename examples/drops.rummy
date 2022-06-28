@@ -1,0 +1,13 @@
+common/deque include
+
+1 2 3 4 5 trace
+
+3! drops! trace 
+
+clear
+
+1 2 3 4 5 trace
+
+!3 !drops trace 
+
+clear

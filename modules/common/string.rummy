@@ -1,0 +1,6 @@
+length proc
+    dup !size            # Get length before chars
+    chars !size          # Get length after chars
+    !swap !subtract      # Find difference
+    !dup !drops !rotate  # Drop chars
+end
