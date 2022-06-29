@@ -10,4 +10,4 @@ clear
 
 0 repeat dup 1 + dup 5 = until
 
-trace
+trace # => [0, 1, 2, 3, 4, 5]
