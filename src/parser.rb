@@ -16,17 +16,17 @@ class Rummy
                 push(pop(2).reverse.reduce(:/))
             when 'mod', '%'
                 push(pop(2).reverse.reduce(:%))
-            when 'equals'
+            when 'equals', '='
                 push(pop(2).reduce(:==))
-            when 'gt'
+            when 'gt', '>'
                 push(pop(2).reduce(:>))
-            when 'lt'
+            when 'lt', '<'
                 push(pop(2).reduce(:<))
-            when 'and'
+            when 'and', '&'
                 push(pop(2).reduce(:&))
-            when 'or'
+            when 'or', '|'
                 push(pop(2).reduce(:|))
-            when 'xor'
+            when 'xor', '^'
                 push(pop(2).reduce(:^))
             when 'not'
                 push(!pop())
@@ -41,7 +41,8 @@ class Rummy
             when 'chars'
                 pop().chars.each { |c| push(c) }
             when 'concat'
-                push(pop(2).reduce(:+))
+                a, b = pop(2)
+                push(a.to_s + b.to_s)
             when 'chr'
                 push(pop().to_i.chr)
             when 'ord'
@@ -173,7 +174,7 @@ class Rummy
                     end
                 end
             end
-            trace(@current) if @trace_mode
+            trace(ip, @current) if @trace_mode
             ip += 1
             #puts "Next: (#{ip}) #{@program[ip]}"
         end

@@ -60,11 +60,9 @@ class Rummy
     end
 
     def trace(ip = nil, instruction = @previous)
-        if ip == nil
-            puts "#{instruction}\t=> #{@deque.inspect} #{jump_stack.inspect}"
-        else
-            puts "#{ip}: #{instruction}\t=> #{@deque.inspect} #{jump_stack.inspect}"
-        end
+        return if instruction == nil
+        instruction = "#{instruction.ljust(16, ' ')}=> #{@deque.inspect}".colorize(:italics)
+        puts "#{(ip.to_s + ':').colorize(:grey)} #{instruction}"
     end
 
     def clear
@@ -79,7 +77,7 @@ class Rummy
         if @labels.key?(word)
             return @labels[word]
         else
-            puts "rummy_error: Unaddressable label '#{word}'".colorize(:red)
+            print_error("Unaddressable label '#{word}'")
             exit
         end
     end
@@ -99,7 +97,7 @@ class Rummy
         unless File.file?(path)
             path = "./modules/#{path}.rummy"
             unless File.file?(path)
-                puts "rummy_error: Invalid file path '#{path}'".colorize(:red)
+                print_error("Invalid file path '#{path}'")
                 return
             end
         end

@@ -16,8 +16,8 @@ KEYWORDS = {
 class String
     def without_symbol
         return self[1..-1] if self[0] == '!'
-        return self[0..-2]  if self[-1] == '!'
-        return self[0..-2]  if self[-1] == ':'
+        return self[0..-2] if self[-1] == '!'
+        return self[0..-2] if self[-1] == ':'
         return self
     end
 end

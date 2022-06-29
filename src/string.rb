@@ -37,15 +37,26 @@ class String
 
     def colorize(color)
         code = case color
-        when :black   ; 30
-        when :red     ; 31
-        when :green   ; 32
-        when :yellow  ; 33
-        when :blue    ; 34
-        when :magenta ; 35
-        when :cyan    ; 36
-        when :white   ; 37
-        else          ; 37
+        # Colors
+        when :black        ; 30
+        when :grey         ; 90
+        when :red          ; 31
+        when :light_red    ; 91
+        when :green        ; 32
+        when :light_green  ; 92
+        when :yellow       ; 33
+        when :light_yellow ; 93
+        when :blue         ; 34
+        when :light_blue   ; 94
+        when :magenta      ; 35
+        when :light_magenta; 95
+        when :cyan         ; 36
+        when :light_cyan   ; 96
+        when :light_grey   ; 37
+        when :white        ; 97
+        # Fonts
+        when :italics      ; 3
+        else               ; 37
         end
         "\e[#{code}m#{self}\e[0m"
     end

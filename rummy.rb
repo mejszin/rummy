@@ -3,8 +3,17 @@ require_relative './src/main.rb'
 require_relative './src/lexer.rb'
 require_relative './src/parser.rb'
 
+
+def print_error(message)
+    puts "rummy_error: #{message.colorize(:italics)}".colorize(:red)
+end
+
+def print_info(message, color = :cyan)
+    puts "rummy_info: #{message.colorize(:italics)}".colorize(color)
+end
+
 if ((ARGV.length == 0) || (!File.exist?(ARGV[0])))
-    puts "rummy_error: No valid file path given".colorize(:red)
+    print_error("No valid file path given")
     exit
 end
 
@@ -17,7 +26,7 @@ result = rummy.interpret
 end_time = Time.now
 
 if rummy.trace_mode
-    puts "rummy_info: Completed!".colorize(:green)
-    puts "rummy_info: Time elapsed #{end_time - begin_time}s".colorize(:cyan)
-    puts "rummy_info: Final state = #{result.inspect}".colorize(:cyan)
+    print_info("Completed!", :green)
+    print_info("Time elapsed #{end_time - begin_time}s")
+    print_info("Final state = #{result.inspect}")
 end
