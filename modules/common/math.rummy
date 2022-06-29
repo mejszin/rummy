@@ -2,18 +2,22 @@
 
 inc proc
     1 +
+    return
 end
 
 dec proc
     1 -
+    return
 end
 
 floor proc
     dup 1 % -
+    return
 end
 
 ceil proc
     dup 1 % 1 swap - +
+    return
 end
 
 sum proc
@@ -24,4 +28,5 @@ sum proc
     else
         drop!
     end
+    return
 end

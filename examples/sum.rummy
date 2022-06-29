@@ -6,6 +6,6 @@ print    # => 14
 
 clear
 
-17 8 -5 2 9
-length sum
-print
+# 17 8 -5 2 9
+# size sum
+# print

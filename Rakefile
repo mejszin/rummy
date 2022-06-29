@@ -5,7 +5,7 @@ KEYWORDS = {
     :string    => { :color => '#80c0d9', :words => ['upcase' 'downcase', 'concat', 'chr', 'ord'] },
     :boolean   => { :color => '#8cd0d3', :words => ['true', 'false'] },
     :operator  => { :color => '#b3d38c', :words => ['and', 'or', 'xor', 'not'] },
-    :pointer   => { :color => '#efaf7f', :words => ['goto', 'gotoif', 'jmp', 'jmpif', 'return', 'returnif', 'proc', 'end', 'if', 'unless', 'else', 'exit'] },
+    :pointer   => { :color => '#efaf7f', :words => ['repeat', 'until', 'goto', 'gotoif', 'jmp', 'jmpif', 'return', 'returnif', 'proc', 'end', 'if', 'unless', 'else', 'exit'] },
     :input     => { :color => '#f0dfaf', :words => ['input', 'alias', 'run', 'include'] },
     :output    => { :color => '#efaf7f', :words => ['trace', 'inspect', 'print'] },
     :direction => { :color => '#606060', :regex => '!' },

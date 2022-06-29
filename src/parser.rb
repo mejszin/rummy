@@ -1,4 +1,4 @@
-BLOCK_WORDS = ['proc', 'if']
+BLOCK_WORDS = ['proc', 'if', 'unless']
 
 class Rummy
     def interpret
@@ -84,8 +84,13 @@ class Rummy
                 @aliases[key] = val
             when 'return'
                 new_ip = @jump_stack.last
+                if ((@last_jump == new_ip) && (@last_deque == @deque))
+                    @jump_stack = @jump_stack[0..-2] until (@jump_stack.last != @last_jump)
+                    new_ip = @jump_stack.last
+                end
                 ip = new_ip unless new_ip == nil
                 @jump_stack = @jump_stack[0..-2]
+                @last_jump, @last_deque = new_ip, @deque
             when 'returnif'
                 bool = pop()
                 if bool
@@ -94,6 +99,12 @@ class Rummy
                     @jump_stack = @jump_stack[0..-2]
                 end
             # TODO: repeat ... <bool> until
+            when 'repeat'
+            when 'until'
+                bool = pop()
+                unless bool
+                    ip -= 1 until @program[ip] == 'repeat'
+                end
             when 'print'
                 val = pop()
                 val = val.to_f.prettify if val.is_number?
@@ -112,10 +123,12 @@ class Rummy
                     layer += 1 if BLOCK_WORDS.include?(@program[ip].word?)
                 end
             when 'end'
-                @contextual_left = false
-                new_ip = @jump_stack.last
-                ip = new_ip unless new_ip == nil
-                @jump_stack = @jump_stack[0..-2]
+                #new_ip = @jump_stack.last
+                #unless new_ip == nil
+                #    @contextual_left = false
+                #    ip = new_ip 
+                #    @jump_stack = @jump_stack[0..-2]
+                #end
             when 'if'
                 bool = pop()
                 unless bool
@@ -123,7 +136,7 @@ class Rummy
                     until (((@program[ip] == 'else') && (layer == 1)) || 
                            ((@program[ip] == 'end' ) && (layer == 0)))
                         ip += 1
-                        layer -= 1 if ['end'].include?@program[ip].word?
+                        layer -= 1 if ['end'].include?(@program[ip].word?)
                         layer += 1 if ['if', 'unless'].include?(@program[ip].word?)
                     end
                 end
@@ -134,12 +147,17 @@ class Rummy
                     until (((@program[ip] == 'else') && (layer == 1)) || 
                            ((@program[ip] == 'end' ) && (layer == 0)))
                         ip += 1
-                        layer -= 1 if ['end'].include?@program[ip].word?
+                        layer -= 1 if ['end'].include?(@program[ip].word?)
                         layer += 1 if ['if', 'unless'].include?(@program[ip].word?)
                     end
                 end
             when 'else'
-                ip += 1 until @program[ip] == 'end'
+                layer = 1
+                until ((@program[ip] == 'end') && (layer == 0))
+                    ip += 1 
+                    layer -= 1 if ['end'].include?(@program[ip].word?)
+                    layer += 1 if ['if', 'unless'].include?(@program[ip].word?)
+                end
             when 'exit'
                 return
             else
@@ -157,6 +175,7 @@ class Rummy
             end
             trace(@current) if @trace_mode
             ip += 1
+            #puts "Next: (#{ip}) #{@program[ip]}"
         end
         return @deque
     end

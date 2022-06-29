@@ -3,21 +3,23 @@ length proc
     chars !size          # Get length after chars
     !swap !subtract      # Find difference
     !dup !drops !rotate  # Drop chars
+    return
 end
 
-upcase proc
+upcase proc 
     dup true equals unless
         dup ~~~ swap chars !
-        true upcase
+        true upcase 
+        return
     else drop
         dup ~~~ equals unless
             dup ord 96 swap gt if
-                ord 32 subtract chr rotate !concat true upcase
-            else
-                rotate !concat true upcase
+                ord 32 subtract chr
             end
+            rotate !concat true upcase 
+            return
         else
-            drop drop !rotate
+            drop drop !rotate 
             return
         end
     end

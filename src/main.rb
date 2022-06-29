@@ -10,6 +10,7 @@ class Rummy
         @trace_mode, @verbose_mode = false, verbose_mode
         @current, @previous = nil, nil
         @contextual_left = false
+        @last_deque, @last_jump = -1, nil
         # Set values
         initial_deque.each { |term| push(term, false) }
         load(@path)

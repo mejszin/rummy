@@ -18,4 +18,5 @@
 colorize proc
     1 size equals returnif
     concat! CLR_NORMAL! concat!
+    return
 end

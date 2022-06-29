@@ -1,0 +1,6 @@
+1
+
+repeat
+    dup print
+    1 add
+dup 5 lt until

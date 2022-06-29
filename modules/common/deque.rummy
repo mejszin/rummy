@@ -7,4 +7,5 @@ drops proc
     else
         drop!
     end
+    return
 end
