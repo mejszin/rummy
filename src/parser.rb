@@ -63,13 +63,13 @@ class Rummy
                     ip = new_ip unless new_ip == nil
                 end
             when 'jmp'
-                @jump_stack << ip
+                @jump_stack << [ip, @contextual_left]
                 new_ip = label(pop())
                 ip = new_ip unless new_ip == nil
             when 'jmpif'
                 label, bool = pop(2)
                 if bool
-                    @jump_stack << ip
+                    @jump_stack << [ip, @contextual_left]
                     new_ip = label(label)
                     ip = new_ip unless new_ip == nil
                 end
@@ -84,19 +84,21 @@ class Rummy
                 # key = @program[ip - 2].word?
                 @aliases[key] = val
             when 'return'
-                new_ip = @jump_stack.last
+                new_ip, new_left = @jump_stack.last
                 if ((@last_jump == new_ip) && (@last_deque == @deque))
-                    @jump_stack = @jump_stack[0..-2] until (@jump_stack.last != @last_jump)
-                    new_ip = @jump_stack.last
+                    @jump_stack = @jump_stack[0..-2] until (@jump_stack.last[0] != @last_jump)
+                    new_ip, new_left = @jump_stack.last
                 end
                 ip = new_ip unless new_ip == nil
+                @contextual_left = new_left unless new_left == nil
                 @jump_stack = @jump_stack[0..-2]
                 @last_jump, @last_deque = new_ip, @deque
             when 'returnif'
                 bool = pop()
                 if bool
-                    new_ip = @jump_stack.last
+                    new_ip, new_left = @jump_stack.last
                     ip = new_ip unless new_ip == nil
+                    @contextual_left = new_left unless new_left == nil
                     @jump_stack = @jump_stack[0..-2]
                 end
             when 'repeat'
@@ -167,8 +169,8 @@ class Rummy
                 return
             else
                 if @labels.key?(@current.word?)
+                    @jump_stack << [ip, @contextual_left]
                     @contextual_left = @contextual_left ? !@current.left? : @current.left?
-                    @jump_stack << ip
                     new_ip = label(@current.word?)
                     ip = new_ip unless new_ip == nil
                 else

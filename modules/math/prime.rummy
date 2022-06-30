@@ -1,4 +1,5 @@
 prime? proc
+    dup print
     # Return true if N equals 2
     dup 2 = if drop true return end
     # Return false if N divisible by 2
@@ -7,9 +8,34 @@ prime? proc
         !1 !+
         # Return false if N is divisible by incrementor
         !dup dup! !rotate % 0 = if
-            !drop !drop false return
+            !drop drop! false return
         end
     # Break and return true if incrementor is greater-than half N
     !dup dup! 2! /! ceil! !rotate gt! until
     !drop drop! true return
+end
+
+primes proc
+    rotate!
+    !1 repeat
+        !1 !+
+        trace
+        !dup !prime? trace !if
+            !dup !rotate
+        end
+    !rotate !dup dup! rotate! !swap rotate! trace != !until
+    !drop !drop return
+end
+
+prime_factors proc
+    rotate!
+    2 repeat
+        !dup dup! !rotate swap % 0 = if
+            dup! swap!
+            dup! rotate! !/
+        else
+            1 +
+        end
+    !dup !1 != !until
+    !drop drop! return
 end
