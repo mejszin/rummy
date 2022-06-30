@@ -11,3 +11,18 @@ clear
 0 repeat dup 1 + dup 5 = until
 
 trace # => [0, 1, 2, 3, 4, 5]
+
+clear
+
+# Nested repeat..until loops
+
+0
+repeat
+    1 +
+    dup repeat
+        1 -
+        !dup !64 !+ !chr !print
+    dup 0 equals until drop
+dup 5 equals until
+
+drop

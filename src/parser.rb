@@ -99,12 +99,16 @@ class Rummy
                     ip = new_ip unless new_ip == nil
                     @jump_stack = @jump_stack[0..-2]
                 end
-            # TODO: repeat ... <bool> until
             when 'repeat'
             when 'until'
                 bool = pop()
                 unless bool
-                    ip -= 1 until @program[ip] == 'repeat'
+                    layer = 1
+                    until ((@program[ip].word? == 'repeat') && (layer == 0))
+                        ip -= 1
+                        layer -= 1 if (@program[ip].word? == 'repeat')
+                        layer += 1 if (@program[ip].word? == 'until')
+                    end
                 end
             when 'print'
                 val = pop()
