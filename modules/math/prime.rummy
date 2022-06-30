@@ -1,0 +1,15 @@
+prime? proc
+    # Return true if N equals 2
+    dup 2 = if drop true return end
+    # Return false if N divisible by 2
+    dup 2 % 0 equals if drop false return end
+    !2 repeat
+        !1 !+
+        # Return false if N is divisible by incrementor
+        !dup dup! !rotate % 0 = if
+            !drop !drop false return
+        end
+    # Break and return true if incrementor is greater-than half N
+    !dup dup! 2! /! ceil! !rotate gt! until
+    !drop drop! true return
+end

@@ -1,0 +1,8 @@
+common/math include
+math/prime include
+
+2    prime? print # => true
+4    prime? print # => false
+15   prime? print # => false
+7    prime? print # => true
+1423 prime? print # => true
