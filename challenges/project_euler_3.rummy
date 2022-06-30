@@ -1,0 +1,4 @@
+common/math include
+math/prime include
+
+600851475143 prime_factors print

@@ -39,7 +39,7 @@ class Rummy
             when 'rotate'
                 push(pop(), self.right?)
             when 'chars'
-                pop().chars.each { |c| push(c) }
+                pop().prettify.to_s.chars.each { |c| push(c) }
             when 'concat'
                 a, b = pop(2)
                 push(a.to_s + b.to_s)

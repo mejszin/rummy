@@ -1,5 +1,5 @@
 length proc
-    dup !size            # Get length before chars
+    !size                # Get length before chars
     chars !size          # Get length after chars
     !swap !subtract      # Find difference
     !dup !drops !rotate  # Drop chars
@@ -23,4 +23,18 @@ upcase proc
             return
         end
     end
+end
+
+reverse proc
+    __ swap chars !
+    repeat
+        rotate! !swap !concat
+    dup __ equals until
+    drop! !rotate
+    return
+end
+
+palindrome? proc
+    dup! reverse! =!
+    return
 end

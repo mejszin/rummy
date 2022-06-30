@@ -9,4 +9,4 @@ math/prime include
 
 # a b c 24 primes trace
 
-76 prime_factors trace
+13195 prime_factors trace

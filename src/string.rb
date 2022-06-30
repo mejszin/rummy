@@ -11,6 +11,10 @@ class String
         self[-1] == LABEL_INDICATOR
     end
 
+    def prettify
+        self
+    end
+
     def has_indicator?
         return (
             (self[0] == DIRECTION_INDICATOR) ||

@@ -30,3 +30,23 @@ sum proc
     end
     return
 end
+
+max proc
+    rotate! dup! !rotate dup! rotate! swap! !rotate
+    gt if
+        rotate! drop !rotate
+    else
+        drop
+    end
+    return
+end
+
+min proc
+    rotate! dup! !rotate dup! rotate! swap! !rotate
+    lt if
+        rotate! drop !rotate
+    else
+        drop
+    end
+    return
+end

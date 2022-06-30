@@ -1,0 +1,24 @@
+common/deque include
+common/string include
+common/math include
+
+0 1000
+repeat
+    1 -
+    !1000
+    repeat
+        !1 !-
+        !dup dup! !rotate *!
+        dup! palindrome?! if!
+            rotate! rotate! rotate! !swap !rotate !swap
+            !max !swap
+        else
+            drop!
+        end
+    !dup !100 != !until
+    !drop
+    dup! 1000 * !dup !rotate gt if 
+        !print exit
+    end
+dup 100 = until
+drop!

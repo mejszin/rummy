@@ -1,0 +1,7 @@
+common/deque include
+common/string include
+
+ABCD reverse
+123 reverse
+
+trace
