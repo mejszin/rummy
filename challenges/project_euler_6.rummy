@@ -9,6 +9,6 @@ repeat size 1 + square size N = until N sum
 1 repeat dup 1 + dup N = until N sum square
 
 # Calculate (1+2+...+N)² - Σ(1²+2²+...+N²)
-swap -
+!-
 
-trace
+print
