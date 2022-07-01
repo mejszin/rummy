@@ -1,0 +1,18 @@
+common/deque include
+common/string include
+common/math include
+math/prime include
+
+13 n alias
+
+n repeat
+    !true
+    n repeat
+        pair % 0 = rotate! !&
+        1 -
+    dup 1 = until drop
+    !if print exit end
+    n +
+false until
+
+trace

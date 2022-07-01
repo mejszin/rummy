@@ -21,10 +21,21 @@ ceil proc
 end
 
 sum proc
-    dup 1 equals unless
-        rotate! !1 !subtract
-        add !rotate
+    dup 1 = unless
+        rotate! !1 !-
+        + !rotate
         sum
+    else
+        drop!
+    end
+    return
+end
+
+product proc
+    dup 1 = unless
+        rotate! !1 !-
+        * !rotate
+        product
     else
         drop!
     end
@@ -49,4 +60,13 @@ min proc
         drop
     end
     return
+end
+
+square proc
+    dup *
+    return
+end
+
+** proc
+    # TODO: exponents i.e. n ** m
 end

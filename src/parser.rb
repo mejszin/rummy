@@ -101,6 +101,13 @@ class Rummy
                     @contextual_left = new_left unless new_left == nil
                     @jump_stack = @jump_stack[0..-2]
                 end
+            when 'next'
+                layer = 1
+                until ((@program[ip].word? == 'repeat') && (layer == 0))
+                    ip -= 1
+                    layer -= 1 if (@program[ip].word? == 'repeat')
+                    layer += 1 if (@program[ip].word? == 'until')
+                end
             when 'repeat'
             when 'until'
                 bool = pop()
