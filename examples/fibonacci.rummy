@@ -1,8 +1,10 @@
-fibonnaci proc
-    dup! print!             # Print right-most value
-    !dup add! swap!         # Dup left-value before adding
-    dup! 100! lt! returnif  # Return if 100 is less than right-most
-    fibonnaci               # Fibonacci!
+proc a b fibonnaci in
+    b 
+    b a +
+    return
 end
 
-!0 !1 fibonnaci
+1 2
+fibonnaci inspect
+fibonnaci inspect
+fibonnaci inspect

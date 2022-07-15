@@ -5,11 +5,11 @@ until_zero jmp
 exit
 
 until_zero:
-    divides_3 jmp increment jmpif
-    divides_5 jmp increment jmpif
+    divides_3 jmp increment swap jmpif
+    divides_5 jmp increment swap jmpif
     continue:
         1 subtract
-        dup 0 equals finish jmpif
+        dup 0 equals finish swap jmpif
         until_zero jmp
 
 finish:

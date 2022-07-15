@@ -10,7 +10,20 @@ drops proc
     return
 end
 
+rotates proc
+    dup 0 = unless
+        1 -
+        swap rotate!
+        rotates
+    else
+        drop!
+    end
+    return
+end
+
 pair proc
     rotate! dup! !rotate dup! rotate! swap! !rotate
     return
 end
+
+# TODO: Clear

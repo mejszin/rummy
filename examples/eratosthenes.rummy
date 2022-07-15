@@ -1,0 +1,55 @@
+common/math include
+common/deque include
+
+
+2 11 range
+
+n_rotate proc
+    !dup !0 != !unless
+        !1 !-
+        # [a, b, c, d, e] -> [a, b, d, e, c]
+        !rotate !swap !rotate swap! rotate!
+        n_rotate
+    else
+        !drop
+    end
+    return
+end
+
+cycle proc
+    !dup !1 !- n_rotate !swap
+    inspect
+    !rotate !dup dup! rotate! !swap rotate! = unless
+        !dup !print
+        !drop
+    else
+        cycle
+    end
+    return
+end
+
+sieve proc
+    !dup
+    !dup n_rotate inspect !swap !print inspect
+    cycle
+    return
+end
+
+sieve
+
+# rotate!
+# repeat
+#     dup 2 = unless rotate! end
+#     dup 2 = unless drop! end
+#     dup 2 =
+# until
+# inspect
+
+
+# 1 2 3 4 5 6 7 8
+# inspect
+# 
+# !rotate !swap !rotate swap! rotate!
+# inspect
+# 
+# exit

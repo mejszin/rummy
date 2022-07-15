@@ -31,6 +31,16 @@ sum proc
     return
 end
 
+range proc
+    rotate!
+    repeat
+        dup 1 +
+        dup !dup !rotate =
+    until
+    !drop
+    return
+end
+
 product proc
     dup 1 = unless
         rotate! !1 !-

@@ -1,0 +1,27 @@
+common/math include
+math/prime include
+
+# 10001 N alias
+# 2 3 repeat dup prime? if dup end 2 + size dup print N = until
+# print
+
+
+30 2 !range
+# Reduce 2
+rotate!
+repeat
+    dup 2 = unless rotate! end
+    dup 2 = unless drop! end
+    dup 2 =
+until
+inspect
+
+# Reduce 3
+rotate!
+repeat
+    dup 2 = unless rotate! end
+    dup 2 = unless rotate! end
+    dup 2 = unless drop! end
+    dup 2 =
+until
+inspect

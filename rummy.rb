@@ -1,5 +1,8 @@
 require_relative './src/string.rb'
 require_relative './src/main.rb'
+require_relative './src/dictionary.rb'
+require_relative './src/goto.rb'
+require_relative './src/block.rb'
 require_relative './src/lexer.rb'
 require_relative './src/parser.rb'
 

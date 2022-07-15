@@ -1,0 +1,18 @@
+0
+repeat
+    dup 1 +
+    dup 15 % 0 = if
+        fizzbuzz print
+    else
+        dup 5 % 0 = if
+            buzz print
+        else
+            dup 3 % 0 = if
+                fizz print
+            else
+                dup print
+            end
+        end
+    end
+dup 15 = until
+clear

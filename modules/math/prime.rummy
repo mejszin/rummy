@@ -1,29 +1,31 @@
 prime? proc
-    dup print
+    # Return false if N equals 0
+    dup 0 = if drop false return end
+    # Return false if N equals 1
+    dup 1 = if drop false return end
     # Return true if N equals 2
     dup 2 = if drop true return end
-    # Return false if N divisible by 2
-    dup 2 % 0 equals if drop false return end
-    !2 repeat
+    !1 repeat
         !1 !+
-        # Return false if N is divisible by incrementor
-        !dup dup! !rotate % 0 = if
-            !drop drop! false return
+        !dup dup! !rotate = unless
+            # Return false if N is divisible by incrementor
+            !dup dup! !rotate % 0 = if
+                !drop drop! false return
+            end
         end
     # Break and return true if incrementor is greater-than half N
     !dup dup! 2! /! ceil! !rotate gt! until
     !drop drop! true return
 end
 
-primes proc
+primes_below proc
     rotate!
     !1 repeat
         !1 !+
-        trace
-        !dup !prime? trace !if
+        !dup !prime? !if
             !dup !rotate
         end
-    !rotate !dup dup! rotate! !swap rotate! trace != !until
+    !rotate !dup dup! rotate! !swap rotate! != !until
     !drop !drop return
 end
 

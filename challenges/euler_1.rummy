@@ -1,0 +1,13 @@
+1000 N alias
+
+0 1
+repeat
+	dup 3 % 0 = rotate
+	dup 5 % 0 = rotate
+	!or !if
+		dup rotate !+
+	end
+	1 +
+dup N = until
+
+!print

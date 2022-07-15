@@ -7,6 +7,7 @@ class Rummy
         # Initialize values
         @path = path
         @program, @deque, @labels, @aliases, @jump_stack = [], [], {}, {}, []
+        @local_aliases = []
         @trace_mode, @verbose_mode = false, verbose_mode
         @current, @previous = nil, nil
         @contextual_left = false
@@ -37,6 +38,13 @@ class Rummy
         end
     end
 
+    def peek()
+        return if ((@deque == nil) || @deque.empty?)
+        word = self.left? ? @deque[0] : @deque[-1]
+    #   puts "peek() => #{word.inspect}"
+        return word
+    end
+
     def pop(n = 1)
         words = []
         return if ((@deque == nil) || @deque.empty?)
@@ -44,6 +52,7 @@ class Rummy
             words << (self.left? ? @deque[0] : @deque[-1])
             @deque = self.left? ? @deque[1..-1] : @deque[0..-2]
         end
+    #   puts "pop() => #{words.inspect}"
         return words.length == 1 ? words.first : words.flatten
     end
     
@@ -64,7 +73,7 @@ class Rummy
     def trace(ip = nil, instruction = @previous)
         return if instruction == nil
         instruction = "#{instruction.ljust(16, ' ')}=> #{@deque.inspect}".colorize(:italics)
-        puts "#{(ip.to_s + ':').colorize(:grey)} #{instruction}"
+        puts "#{(ip.to_s + ':').colorize(:grey)} #{instruction} (#{@local_aliases})"
     end
 
     def clear
@@ -72,7 +81,12 @@ class Rummy
     end
 
     def alias(word)
-        return @aliases.key?(word) ? @aliases[word] : word
+        if @aliases.key?(word)
+            return @aliases[word]
+        else
+            @local_aliases.reverse.each { |a| return a[word] if a.key?(word) }
+            return word
+        end
     end
 
     def label(word)

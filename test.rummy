@@ -1,0 +1,13 @@
+1000 MAX alias
+
+proc n check in
+	n 3 % 0 = n 5 % 0 = |
+    if n else 0 end return
+end
+
+0 1 repeat
+    dup check swap !+
+    1 +
+dup MAX = until
+
+!print
