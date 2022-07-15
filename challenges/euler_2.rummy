@@ -1,3 +1,6 @@
+# Project Euler
+# Problem 2: Even Fibonacci numbers
+
 4000000 LIMIT alias
 
 proc a b fibonacci in
