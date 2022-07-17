@@ -1,4 +1,4 @@
-prime? proc
+proc prime? in
     # Return false if N equals 0
     dup 0 = if drop false return end
     # Return false if N equals 1
@@ -18,7 +18,7 @@ prime? proc
     !drop drop! true return
 end
 
-primes_below proc
+proc primes_below in
     rotate!
     !1 repeat
         !1 !+
@@ -29,7 +29,7 @@ primes_below proc
     !drop !drop return
 end
 
-prime_factors proc
+proc prime_factors in
     rotate!
     2 repeat
         !dup dup! !rotate swap % 0 = if

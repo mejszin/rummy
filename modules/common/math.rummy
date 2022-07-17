@@ -1,26 +1,26 @@
 3.14159265359 pi alias
 
-inc proc
-    1 +
+proc n inc in
+    n 1 +
     return
 end
 
-dec proc
-    1 -
+proc n dec in
+    n 1 -
     return
 end
 
-floor proc
-    dup 1 % -
+proc n floor in
+    n 1 % n -
     return
 end
 
-ceil proc
-    dup 1 % 1 swap - +
+proc n ceil in
+    n n 1 % 1 swap - +
     return
 end
 
-sum proc
+proc sum in
     dup 1 = unless
         rotate! !1 !-
         + !rotate
@@ -31,7 +31,7 @@ sum proc
     return
 end
 
-range proc
+proc range in
     rotate!
     repeat
         dup 1 +
@@ -41,7 +41,7 @@ range proc
     return
 end
 
-product proc
+proc product in
     dup 1 = unless
         rotate! !1 !-
         * !rotate
@@ -52,7 +52,7 @@ product proc
     return
 end
 
-max proc
+proc max in
     rotate! dup! !rotate dup! rotate! swap! !rotate
     gt if
         rotate! drop !rotate
@@ -62,7 +62,7 @@ max proc
     return
 end
 
-min proc
+proc min in
     rotate! dup! !rotate dup! rotate! swap! !rotate
     lt if
         rotate! drop !rotate
@@ -72,11 +72,17 @@ min proc
     return
 end
 
-square proc
+proc square in
     dup *
     return
 end
 
-** proc
+proc n even? in
+    n 2 % 0 =
+    return
+end
+
+proc ** in
     # TODO: exponents i.e. n ** m
+    return
 end

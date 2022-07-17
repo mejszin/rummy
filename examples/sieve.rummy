@@ -1,0 +1,45 @@
+common/math include
+
+proc n filter in
+    repeat
+        dup n % 0 = rotate dup n = not !rotate & unless
+            rotate
+        else
+            drop !0
+        end
+    !dup !n != !until
+    return
+end
+
+proc line_up in
+    repeat
+        !rotate
+    !dup !0 != !not !until
+    return
+end
+
+proc n sieve in
+    repeat
+        !dup !rotate filter line_up
+    !dup !n != !until
+    return
+end
+
+proc compact in
+    size
+    repeat
+        1 -
+        !dup !0 != !unless
+            !rotate swap
+        else
+            !drop
+        end
+    dup 1 = until
+    drop !rotate
+    0 dup = if drop end
+    return
+end
+
+2 100 range
+
+!dup !rotate sieve compact
