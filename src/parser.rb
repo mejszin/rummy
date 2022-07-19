@@ -12,7 +12,7 @@ class Rummy
             when Dictionary::Multiply
                 push(pop(2).reverse.reduce(:*))
             when Dictionary::Divide
-                push(pop(2).reverse.reduce(:/))
+                push(pop(2).reverse.map { |n| n.to_f }.reduce(:/))
             when Dictionary::Modulo
                 push(pop(2).reverse.reduce(:%))
             when Dictionary::Equals

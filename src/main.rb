@@ -55,14 +55,12 @@ class Rummy
     #   puts "pop() => #{words.inspect}"
         return words.length == 1 ? words.first : words.flatten
     end
-    
+
     def push(word, left = self.left?)
         word = self.alias(word)
         word = true if word == 'true'
         word = false if word == 'false'
-        if (word.is_a?(String) && word.float?)
-            word = word.to_f % 1 == 0 ? word.to_i : word.to_f
-        end
+        word = word.to_f if (word.is_a?(String) && word.float?)
         if @deque == nil
             @deque = []
         else

@@ -21,8 +21,8 @@ proc rotates in
     return
 end
 
-proc pair in
-    rotate! dup! !rotate dup! rotate! swap! !rotate
+proc a b pair in
+    a b a b
     return
 end
 

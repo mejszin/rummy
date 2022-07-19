@@ -10,8 +10,35 @@ proc n dec in
     return
 end
 
+proc b p exp in
+    b 0 = if 0 return end
+    p 0 = if 1 return end
+    p 0 > if ERR return end
+    b !p
+    repeat
+        b *
+        !1 !-
+    !dup !1 != !until
+    !drop return
+end
+
+proc n round in
+    n 1 % 0.5 > if 
+        n floor
+    else
+        n ceil
+    end
+    return
+end
+
+proc n dp round_to_dp in
+    n 10 dp exp * round
+    10 dp exp /
+    return
+end
+
 proc n floor in
-    n 1 % n -
+    n n 1 % -
     return
 end
 
