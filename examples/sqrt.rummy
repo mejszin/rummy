@@ -1,16 +1,16 @@
 common/deque include
 common/math include
 
-proc b a newtons_method in
-    1   # n initial guess
-    500 # r max iterations
-    0   # c current iteration
+proc base root newtons_method in
+    1   # guess
+    500 # max iterations
+    0   # current iteration
     repeat
         rotate rotate
-        with n in
-            n n a exp b - a b * / -
+        with guess in
+            guess guess root exp base - root base * / -
         end
-        dup dup * 6 round_to_dp b = if
+        dup dup * 6 round_to_dp base = if
             !drop !drop 6 round_to_dp return
         end
         !rotate !rotate
@@ -25,6 +25,6 @@ proc b sqrt in
     return
 end
 
-16 sqrt print
-25 sqrt print
-2  sqrt print
+16 sqrt print # => 4
+25 sqrt print # => 5
+2  sqrt print # => 1.414213
