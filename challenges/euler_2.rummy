@@ -9,7 +9,8 @@ proc a b fibonacci in
     return
 end
 
-0 0 1
+0 0 1 # => [sum, a, b]
+
 repeat
     fibonacci
     dup 2 % 0 = if 

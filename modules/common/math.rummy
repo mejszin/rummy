@@ -54,7 +54,7 @@ end
 
 proc max in
     rotate! dup! !rotate dup! rotate! swap! !rotate
-    gt if
+    > if
         rotate! drop !rotate
     else
         drop
@@ -64,7 +64,7 @@ end
 
 proc min in
     rotate! dup! !rotate dup! rotate! swap! !rotate
-    lt if
+    < if
         rotate! drop !rotate
     else
         drop

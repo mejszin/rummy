@@ -40,6 +40,10 @@ proc compact in
     return
 end
 
-2 100 range
+2 10 range
 
-!dup !rotate sieve compact
+!dup !rotate sieve
+
+compact
+
+inspect

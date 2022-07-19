@@ -1,0 +1,9 @@
+proc a b c d determinant in
+    a d * c b * -
+    return
+end
+
+1  4 
+5 -9
+
+determinant print

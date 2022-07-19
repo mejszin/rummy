@@ -8,7 +8,8 @@ proc n check in
     if n else 0 end return
 end
 
-0 1 repeat
+0 1
+repeat
     dup check swap !+
     1 +
 dup MAX = until

@@ -32,7 +32,4 @@ if rummy.trace_mode
     print_info("Completed!", :green)
     print_info("Time elapsed #{end_time - begin_time}s")
     print_info("Final state = #{result.inspect}")
-else
-    print_info("Time elapsed #{end_time - begin_time}s")
-    print_info("Final state = #{result.inspect}")
 end

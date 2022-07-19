@@ -1,6 +1,6 @@
 # Drops N items from opposite direction
 
-drops proc
+proc drops in
     dup! 0! equals! unless
         1! subtract!
         !drop drops!
@@ -10,7 +10,7 @@ drops proc
     return
 end
 
-rotates proc
+proc rotates in
     dup 0 = unless
         1 -
         swap rotate!
@@ -21,9 +21,13 @@ rotates proc
     return
 end
 
-pair proc
+proc pair in
     rotate! dup! !rotate dup! rotate! swap! !rotate
     return
 end
 
-# TODO: Clear
+proc clear in
+    repeat
+        drop
+    size 0 = until
+end
