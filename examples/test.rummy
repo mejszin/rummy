@@ -1,14 +1,6 @@
 common/math include
 
-10 N alias
+2 3 max print
+2 3 min print
 
-# Calculate Σ(1²+2²+...+N²)
-repeat size 1 + square size N equals until N sum
-
-# Calculate (1+2+...+N)²
-1 repeat dup 1 + dup N = until N sum square
-
-# Calculate (1+2+...+N)² - Σ(1²+2²+...+N²)
-swap -
-
-trace
+1 10 range inspect

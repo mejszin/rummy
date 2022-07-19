@@ -30,4 +30,5 @@ proc clear in
     repeat
         drop
     size 0 = until
+    return
 end

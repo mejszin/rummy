@@ -20,14 +20,13 @@ proc n ceil in
     return
 end
 
-proc sum in
-    dup 1 = unless
-        rotate! !1 !-
-        + !rotate
-        sum
-    else
-        drop!
-    end
+proc a b max in
+    a b > if b else a end
+    return
+end
+
+proc a b min in
+    a b > if a else b end
     return
 end
 
@@ -41,6 +40,17 @@ proc range in
     return
 end
 
+proc sum in
+    dup 1 = unless
+        rotate! !1 !-
+        + !rotate
+        sum
+    else
+        drop!
+    end
+    return
+end
+
 proc product in
     dup 1 = unless
         rotate! !1 !-
@@ -48,26 +58,6 @@ proc product in
         product
     else
         drop!
-    end
-    return
-end
-
-proc max in
-    rotate! dup! !rotate dup! rotate! swap! !rotate
-    > if
-        rotate! drop !rotate
-    else
-        drop
-    end
-    return
-end
-
-proc min in
-    rotate! dup! !rotate dup! rotate! swap! !rotate
-    < if
-        rotate! drop !rotate
-    else
-        drop
     end
     return
 end
