@@ -10,7 +10,7 @@ proc base root newtons_method in
         with guess in
             guess guess root exp base - root base * / -
         end
-        dup dup * 6 round_to_dp base = if
+        dup root exp 6 round_to_dp base = if
             !drop !drop 6 round_to_dp return
         end
         !rotate !rotate
@@ -20,8 +20,8 @@ proc base root newtons_method in
     return
 end
 
-proc b sqrt in
-    b 2 newtons_method
+proc base sqrt in
+    base 2 newtons_method
     return
 end
 
