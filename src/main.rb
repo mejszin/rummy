@@ -47,6 +47,7 @@ class Rummy
 
     def pop(n = 1)
         words = []
+        print_error('No value to pop from deque') if @deque.length < n
         return if ((@deque == nil) || @deque.empty?)
         (0...n).each do
             words << (self.left? ? @deque[0] : @deque[-1])
