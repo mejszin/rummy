@@ -1,0 +1,23 @@
+proc base root newtons_method in
+    1   # guess
+    500 # max iterations
+    0   # current iteration
+    repeat
+        rotate rotate
+        with guess in
+            guess guess root exp base - root base * / -
+        end
+        dup root exp 6 round_to_dp base = if
+            !drop !drop 6 round_to_dp return
+        end
+        !rotate !rotate
+        inc
+    pair < not until
+    drop drop
+    return
+end
+
+proc base sqrt in
+    base 2 newtons_method
+    return
+end

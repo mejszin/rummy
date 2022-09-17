@@ -1,0 +1,21 @@
+common/deque include
+common/math include
+
+proc a b c quadratic in
+    b b * 4 a c * * - sqrt
+    dup rotate
+    b -1 * + 2 a * /
+    !rotate
+    b -1 * swap - 2 a * /
+    return
+end
+
+proc a b c po_shen_loh in
+    b 2 / abs
+    dup 2 ** c - sqrt
+    pair - rotate + !rotate
+    return
+end
+
+1 -1 -12 quadratic inspect clear
+1 -1 -12 po_shen_loh inspect clear

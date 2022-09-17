@@ -99,7 +99,18 @@ proc n even? in
     return
 end
 
-proc ** in
-    # TODO: exponents i.e. n ** m
+proc b p ** in
+    b p exp
     return
 end
+
+proc n abs in
+    n 0 > if
+        n -1 *
+    else
+        n
+    end
+    return
+end
+
+math/sqrt include
