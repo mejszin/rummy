@@ -11,9 +11,12 @@ proc a b c quadratic in
 end
 
 proc a b c po_shen_loh in
-    b 2 / abs
-    dup 2 ** c - sqrt
-    pair - rotate + !rotate
+    b 2 / abs as mid in
+        mid 2 ** c - sqrt as u in
+            mid u +
+            mid u -
+        end
+    end
     return
 end
 
